@@ -1,0 +1,30 @@
+Instructions to Run User Sem:
+1.Navigate to this directory in the terminal
+2.Type "make user_sem" and hit enter
+3.Type "valgrind ./user_sem" and hit enter
+
+Instructions to Install Kernel:
+1.Navigate to the cmsc421-project3 directory in the terminal
+2.Type "make -j<number of cores> bindeb-pkg" and hit enter
+3.There should now be 2 linux image files outside of the project.
+4.Copy the name of the one without dbg in it and type sudo dpkg -i <paste name here>
+5.Restart the operating system and boot up with the newly created kernel named project3buffer2
+
+Instructions to Run Kernel Sem:
+1.Install the custom kernel if you haven't already
+2.Navigate to this directory in the terminal
+3.Type "make sem" and hit enter
+4.Type "./sem" and hit enter
+5.Enter "sudo dmesg" hit enter and enter your password if prompted. This will display the log which should contain all of the printout's and error displays.
+
+Consumer:
+The consumer displays the first character of the thing being removed and then moves to the next pointer in read.(It could easily display all the characters but it would be unreadable, given that test runs 1000 times and the full data is 1024 characters).
+
+Producer:
+The producer takes in a 1024 character string all of the same character from the test file. It then takes these and copys them to the current write pointer and then goes to the next write pointer. The test file sends in data that in order from 0 to 9 and then goes back to 0.
+
+Semaphores:
+This file uses a cris-cross of sempahores to block calls. When attempting dequeue while empty or enqueue while full it will result in the corresponding semaphore hitting 0. This will block the call until the opposite function finishes and increments the semaphore resuming the other function.
+
+Test:
+Most of the test functionality is in the form of error messages. While the consumer displays the data it consumes in the order it consumes it, reading through all 1000 runs to confirm correctness is rather time consuming. For this reason throughout the buffer_sem.c file error messages have been implemented to detect issues. As long as there are no error messages it should be working properly.

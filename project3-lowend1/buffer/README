@@ -1,0 +1,26 @@
+Instructions to Run User Buffer:
+1.Navigate to this directory in the terminal
+2.Type "make user" and hit enter
+3.Type "valgrind ./user" and hit enter
+
+Instructions to Install Kernel:
+1.Navigate to the cmsc421-project3 directory in the terminal
+2.Type "make -j<number of cores> bindeb-pkg" and hit enter
+3.There should now be 2 linux image files outside of the project.
+4.Copy the name of the one without dbg in it and type sudo dpkg -i <paste name here>
+5.Restart the operating system and boot up with the newly created kernel named project3buffer2
+
+Instructions to Run Kernel Sem:
+1.Install the custom kernel if you haven't already
+2.Navigate to this directory in the terminal
+3.Type "make kernel" and hit enter
+4.Type "./kernel" and hit enter
+5.Some of the tests should be displayed to the screen
+5.To see the buffer printout enter "sudo dmesg" and enter your password if prompted
+
+
+Buffer:
+The buffer implementation is a simple circular buffer. It's initialized with 20 nodes each with 0 where the last node points to the first.
+
+Test:
+The test functionality is a number of print statements testing edge cases. Each of the print statements say what should be returned if the test is performed correctly. The first set of numbers should include 20 0's and the second set should be 12345678912345678912. The last print of the buffer should display 00000678912345678912. If all of these are displayed correctly and the returns match what is said should be returned then the program is functioning correctly.

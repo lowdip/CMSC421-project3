@@ -1,0 +1,16 @@
+Instructions to Run Mon:
+1.Navigate to this directory in the terminal
+2.Type "make test_mon" and hit enter
+3.Type "valgrind ./test_mon" and hit enter
+
+Consumer:
+The consumer displays the first character of the thing being removed and then moves to the next pointer in read.(It could easily display all the characters but it would be unreadable, given that test runs 1000 times and the full data is 1024 characters).
+
+Producer:
+The producer takes in a 1024 character string all of the same character from the test file. It then takes these and copys them to the current write pointer and then goes to the next write pointer. The test file sends in data that in order from 0 to 9 and then goes back to 0.
+
+Monitor:
+This program uses a monitor instead of the semaphores in the previous section. It has a mutex and 2 conditions. One for enqueue and one for dequeue. When there is an attempt to enqueue a full buffer or dequeue and empty one it will wait using the corresponding condition and the mutex. The program will then send a signal releasing the wait when the opposite procedure is completed.
+
+Test:
+Most of the test functionality is in the form of error messages. While the consumer displays the data it consumes in the order it consumes it, reading through all 1000 runs to confirm correctness is rather time consuming. For this reason throughout the buffer_mon.c file error messages have been implemented to detect issues. As long as there are no error messages it should be working properly.
